@@ -4,16 +4,18 @@ import Axios from 'axios';
 import { AiOutlineFileAdd } from 'react-icons/ai';
 import { BsTrash } from 'react-icons/bs';
 import Note from "../components/note";
+import Modal from '../components/modal'
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState('');
   const [notes, setNotes] = useState([]);
   const [filteredNotes, setFilteredNotes] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    const fetchNotes = async () => {
+    const fetchNotes = async (id) => {
       try {
-        const response = await Axios.get('http://localhost:3000/api/notes');
+        const response = await Axios.get(`http://localhost:3000/api/notes/`);
         setNotes(response.data);
       } catch (error) {
         console.log(error);
@@ -49,6 +51,24 @@ export default function Home() {
     }
   };
 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const addNote = async (noteData) => {
+    try {
+      const response = await Axios.post('http://localhost:3000/api/notes', noteData);
+      setNotes(prevNotes => [...prevNotes, response.data]);
+      closeModal();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <Layout>
       <div className="flex flex-col w-100 p-2 gap-2">
@@ -61,9 +81,10 @@ export default function Home() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <button>
+          <button onClick={openModal}>
             <AiOutlineFileAdd />
           </button>
+          <Modal isOpen={isModalOpen} onClose={closeModal} onAddNote={addNote}/>
         </div>
 
         <div>

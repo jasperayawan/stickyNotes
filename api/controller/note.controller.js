@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
     try{
         const response = await Note.create({
             title,
-            description
+            description,
         })
 
         res.status(200).json(response)
@@ -66,7 +66,27 @@ router.get('/:id', async(req,res) => {
     }
 })
 
-//get all notes
+//get all notes for a specific user
+// router.get('/:id', async (req, res) => {
+//     try {
+//       const note = await Note.findById(req.params.id);
+      
+//       // Check if the note exists
+//       if (!note) {
+//         return res.status(404).json({ message: 'Note not found' });
+//       }
+      
+//       // Check if the authenticated user is the owner of the note
+//       if (note.userId !== req.user.id) {
+//         return res.status(401).json({ message: 'Unauthorized' });
+//       }
+  
+//       res.status(200).json(note);
+//     } catch (err) {
+//       res.status(400).json(err);
+//     }
+//   });
+
 router.get('/', async (req,res) => {
     try{
         const response = await Note.find();
@@ -77,3 +97,7 @@ router.get('/', async (req,res) => {
         res.status(400).json(err)
     }
 })
+  
+  
+  
+  

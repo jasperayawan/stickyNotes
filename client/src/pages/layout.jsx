@@ -33,10 +33,10 @@ export default function Layout(props) {
             ):(
               <>
                 
-              <Link className="mr-5 hover:text-gray-900 ring-1 px-3 py-1 rounded-md ring-yellow-500">
+              <Link to='/login' className="mr-5 hover:text-gray-900 ring-1 px-3 py-1 rounded-md ring-yellow-500">
                   Login
                 </Link>
-                <Link className="mr-5 hover:text-gray-900 bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400">
+                <Link to='/register' className="mr-5 hover:text-gray-900 bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400">
                   Sign up
                 </Link>
               </>

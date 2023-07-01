@@ -35,9 +35,9 @@ export default function Login() {
   return (
     <>
       <section className="text-gray-600 body-font __bgnte min-h-screen">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div className="container px-5 py-24 mx-auto flex justify-center flex-wrap items-center">
           
-          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+          <div className="lg:w-2/6 md:w-1/2 mx-auto bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <form onSubmit={loginUser}>
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5 text-center">
               Login
@@ -73,7 +73,7 @@ export default function Login() {
                 type='submit'
                 disabled={isFetching}
                 className="text-white w-full mb-2 bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
-            <div className='flex justify-center items-center'>
+            <div className='flex justify-center items-center gap-1'>
                 don't have an account <Link to='/register' className='text-yellow-600 font-semibold hover:underline'>Register here!</Link>
             </div>
             </form>

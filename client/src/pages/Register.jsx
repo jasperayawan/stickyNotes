@@ -36,7 +36,7 @@ export default function Register() {
       <section className="text-gray-600 body-font __bgnte">
         <div className="container px-5 py-24 mx-auto flex flex-wrap items-center">
           
-          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+          <div className="lg:w-2/6 md:w-1/2 mx-auto bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
             <form onSubmit={registerUser}>
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5 text-center">
               Sign Up
@@ -96,8 +96,8 @@ export default function Register() {
             <input 
                 value="Register"
                 type='submit'
-                className="text-white w-full bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
-                <div className='flex justify-center items-center'>
+                className="text-white w-full mb-2 bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
+                <div className='flex justify-center items-center gap-1'>
                 Already have an account <Link to='/login' className='text-yellow-600 font-semibold hover:underline'>Login here!</Link>
                  </div>
             </form>

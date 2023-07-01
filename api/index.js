@@ -4,10 +4,6 @@ const dotenv = require('dotenv');
 const cors = require('cors')
 const connect = require('./db')
 const noteRoute = require('./controller/note.controller')
-const deleteRoute = require('./controller/note.controller')
-const updateRoute = require('./controller/note.controller')
-const getRoute = require('./controller/note.controller')
-const getallRoute = require('./controller/note.controller')
 const userRoute = require('./controller/user.controller')
 const app = express();
 
