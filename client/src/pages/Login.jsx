@@ -9,7 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('')
     const Navigate = useNavigate();
 
-    const {user,dispatch, isFetching} = useContext(Context);
+    const {dispatch, isFetching} = useContext(Context);
 
     const loginUser = async(e) => {
         e.preventDefault();

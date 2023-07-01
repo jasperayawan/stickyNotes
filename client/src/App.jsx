@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import { ContextProvider } from './context/Context';
 
+
 function App() {
   return (
     <ContextProvider>
