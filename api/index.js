@@ -8,6 +8,7 @@ const deleteRoute = require('./controller/note.controller')
 const updateRoute = require('./controller/note.controller')
 const getRoute = require('./controller/note.controller')
 const getallRoute = require('./controller/note.controller')
+const userRoute = require('./controller/user.controller')
 const app = express();
 
 dotenv.config();
@@ -35,3 +36,4 @@ app.use('/api/deletenote', deleteRoute);
 app.use('/api/updatenote', updateRoute);
 app.use('/api/getnote', getRoute);
 app.use('/api/getllnote', getallRoute);
+app.use('/api/user', userRoute)
