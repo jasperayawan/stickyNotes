@@ -1,10 +1,11 @@
 const express = require('express')
-const router = express.Router();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors')
 const connect = require('./db')
+const noteRoute = require('./controller/note.controller')
+const deleteRoute = require('./controller/note.controller')
+const updateRoute = require('./controller/note.controller')
 const app = express();
 
 dotenv.config();
@@ -26,3 +27,7 @@ app.listen(port, () => {
     }
     connect();
 })
+
+app.use('/api/notes', noteRoute);
+app.use('/api/deletenote', deleteRoute);
+app.use('/api/updatenote', updateRoute);
