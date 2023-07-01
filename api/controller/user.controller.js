@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../model/user.model');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken')
+const secretKey = 'afasfuqhwncoiyurwnkiAD';
 
 // REGISTER
 router.post('/register', async (req, res) => {
@@ -20,5 +22,23 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Registration failed.' });
   }
 });
+
+//LOGIN
+router.post('/login', async (req,res) => {
+  try{
+      const user = await User.findOne({email: req.body.email})
+
+      !user && res.status(400).json('Wrong credentials!');
+      const validated = bcrypt.compare(req.body.password, user.password);
+      !validated && res.status(400).json("Wrong credentials");
+
+      //take other data without password
+      const { password, ...others } = user._doc;
+      res.status(200).json(others);
+  }
+  catch(err){
+      res.status(500).json(err)
+  }
+})
 
 module.exports = router;

@@ -32,8 +32,4 @@ app.listen(port, () => {
 })
 
 app.use('/api/notes', noteRoute);
-app.use('/api/deletenote', deleteRoute);
-app.use('/api/updatenote', updateRoute);
-app.use('/api/getnote', getRoute);
-app.use('/api/getllnote', getallRoute);
 app.use('/api/user', userRoute)

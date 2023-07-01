@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     const fetchNotes = async () => {
       try {
-        const response = await Axios.get('http://localhost:3000/api/getllnote');
+        const response = await Axios.get('http://localhost:3000/api/notes');
         setNotes(response.data);
       } catch (error) {
         console.log(error);
