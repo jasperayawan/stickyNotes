@@ -22,22 +22,16 @@ router.post('/', async (req, res) => {
 module.exports = router;
 
 //delete post
-router.delete('/:id', async(req, res) => {
-    try{
-        const note = await Note.findById(req.params.id)
+router.delete('/:id', async (req, res) => {
+    try {
+      const note = await Note.findByIdAndDelete(req.params.id);
+      res.status(200).json('Note has been deleted!');
 
-        try{
-            await note.deleteOne();
-            res.status(200).json('Note has been deleted!')
-        }
-        catch(err){
-            res.status(401).json(err)
-        }
+    } catch (err) {
+      res.status(400).json(err);
     }
-    catch(err){
-        res.status(400).json(err);
-    }
-})
+  });
+  
 
 //update post
 router.put('/:id', async(req,res) => {
@@ -68,7 +62,7 @@ router.get('/:id', async(req,res) => {
         res.status(200).json(response)
     }
     catch(err){
-        res.status(400).json(RR)
+        res.status(400).json(err)
     }
 })
 
