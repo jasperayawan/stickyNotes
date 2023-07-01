@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../App.css'
 import Axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 export default function Register() {
     const [fullName, setFullName] = useState('')
@@ -96,7 +96,10 @@ export default function Register() {
             <input 
                 value="Register"
                 type='submit'
-                className="text-white bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
+                className="text-white w-full bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
+                <div className='flex justify-center items-center'>
+                Already have an account <Link to='/login' className='text-yellow-600 font-semibold hover:underline'>Login here!</Link>
+                 </div>
             </form>
 
           </div>

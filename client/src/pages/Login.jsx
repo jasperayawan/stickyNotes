@@ -1,28 +1,33 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import '../App.css'
 import Axios from 'axios'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link } from 'react-router-dom';
+import { Context } from '../context/Context';
 
 export default function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const Navigate = useNavigate();
 
+    const {user,dispatch, isFetching} = useContext(Context);
+
     const loginUser = async(e) => {
         e.preventDefault();
 
+        dispatch({type:"LOGIN_START"});
         try {
             const response = await Axios.post('http://localhost:3000/api/user/login', {
               email: email,
               password: password,
             });
-      
+            
+            dispatch({type:"LOGIN_SUCCESS", payload:response.data});
             if(response.status === 200){
               alert('login successfully!')
               Navigate('/')
             }
           } catch (err) {
-            console.log(err.response.data);
+            dispatch({type:"LOGIN_FAILURE"});
           }
         
     }
@@ -66,7 +71,11 @@ export default function Login() {
             <input 
                 value="Login"
                 type='submit'
-                className="text-white w-full bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
+                disabled={isFetching}
+                className="text-white w-full mb-2 bg-yellow-500 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-400 rounded text-lg"/>
+            <div className='flex justify-center items-center'>
+                don't have an account <Link to='/register' className='text-yellow-600 font-semibold hover:underline'>Register here!</Link>
+            </div>
             </form>
 
           </div>

@@ -1,8 +1,17 @@
-import { Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Context } from "../context/Context";
 
 export default function Layout(props) {
+  const {user, dispatch} = useContext(Context);
+  const Navigate = useNavigate()
 
-const currentDate = new Date().getFullYear();
+  const currentDate = new Date().getFullYear();
+
+  const handleLogout = () => {
+    dispatch({ type: "LOGOUT" });
+    Navigate("/login");
+  };
 
   return (
     <>
@@ -12,12 +21,26 @@ const currentDate = new Date().getFullYear();
             <span className="ml-3 text-xl">Stinky-Notes</span>
           </Link>
           <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <Link className="mr-5 hover:text-gray-900 ring-1 px-3 py-1 rounded-md ring-yellow-500">
-              Login
-            </Link>
-            <Link className="mr-5 hover:text-gray-900 bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400">
-              Sign up
-            </Link>
+            {user ? (
+              <>
+                <div className="flex gap-2 justify-center items-center">
+                  <span>{user.email}</span>
+                <button onClick={handleLogout} className="mr-5 hover:text-gray-900 bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400">
+                  Logout
+                </button>
+                </div>
+              </>
+            ):(
+              <>
+                
+              <Link className="mr-5 hover:text-gray-900 ring-1 px-3 py-1 rounded-md ring-yellow-500">
+                  Login
+                </Link>
+                <Link className="mr-5 hover:text-gray-900 bg-yellow-500 px-3 py-1 rounded-md hover:bg-yellow-400">
+                  Sign up
+                </Link>
+              </>
+            )}
           </nav>
         </div>
       </header>
